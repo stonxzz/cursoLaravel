@@ -8,9 +8,9 @@ Route::get('/', function () {
 
 Route::get('/contact', function () {
     // return redirect()->route('contact2');
-    return to_route('contact2');
+    // return to_route('contact2'); // Esta es la mejor y la mas corta
     // $data = ['name' => 'Stonxz'];
-    // return view('contact', $data);
+    return view('contact', ['name' => 'Stonxz']);
 })->name('contact');;
 
 

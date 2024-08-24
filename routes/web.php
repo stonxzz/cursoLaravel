@@ -8,3 +8,5 @@ Route::get('/', function () {
 });
 
 Route::get('test', [PrimerControlador::class, 'index']);
+
+Route::resource('post', PrimerControlador::class);

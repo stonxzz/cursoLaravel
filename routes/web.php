@@ -8,5 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('test', [PrimerControlador::class, 'index']);
+Route::get('otro/{post}/{otro?}', [PrimerControlador::class, 'otro']);
+
 
 Route::resource('post', PrimerControlador::class);

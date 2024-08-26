@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Contact</title>
-</head>
-<body>
-    <h3>Contact view</h3>
+@extends('master')
 
-    <p>{{$name}}</p>
-</body>
-</html>
+@section('content')
+    <h3>Contact view</h3>
+    <p>{{ $posts[0] }}</p>
+
+    {{-- @if ($name != 'Stonxz')
+        <h3>Tu nombre no es Stonxz.</h3>
+    @else
+        <h3>Tu nombre es Stonxz</h3>
+    @endif --}}
+
+    {{-- <ul>
+        @foreach ([1, 2, 3, 4, 5] as $element)
+            <li>{{ $element }}</li>
+        @endforeach
+    </ul>  --}}
+@endsection

@@ -22,7 +22,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::get();
+        //Con el pluck solo se mandan las consultas de lo que se quiere, sin tanta data
+        $categories = Category::pluck('id', 'title');
+        // dd($categories);
 
         // dd($categories[0]->slug);
         echo view('dashboard.post.create',compact('categories'));
@@ -33,15 +35,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
-        echo request("title");
-
-        echo $request->input("description");
-=======
-        // echo request("title");
 
         dd($request->all()); 
->>>>>>> 8781bd1 (feature :sparkles: The category list was created and posted in the form)
         // dd($request);
     }
 

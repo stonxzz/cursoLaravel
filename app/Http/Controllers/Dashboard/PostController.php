@@ -29,7 +29,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        echo "store";
+        echo request("title");
+
+        echo $request->input("description");
+        // dd($request);
     }
 
     /**

@@ -38,4 +38,7 @@
             @endforeach
         </tbody>
     </table>
+
+    {{-- se agrega el metodo links para agregar los botones de paginacion --}}
+    {{$posts->links()}}
 @endsection

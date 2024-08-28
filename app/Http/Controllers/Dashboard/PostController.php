@@ -7,6 +7,7 @@ use App\Http\Requests\Post\StoreRequest;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -38,6 +39,12 @@ class PostController extends Controller
     public function store(StoreRequest $request)
     {
         // dd($request->all());
+
+        
+
+        // dd($validated);
+        // $validate = Validator::make($request->all(),StoreRequest::myRules());
+        // dd($validate->errors());
         Post::create($request->validated());
     }
 

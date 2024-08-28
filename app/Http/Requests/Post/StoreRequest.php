@@ -6,6 +6,16 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends FormRequest
 {
+    static public function myRules(){
+        return [
+            "title" => 'required|min:5|max:500',
+            "slug" =>  'required|min:5|max:500',
+            "content" => 'required|min:7',
+            "category_id" => 'required',
+            "description" => 'required|min:7',
+            "posted" => 'required'
+        ];
+    }
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -21,13 +31,6 @@ class StoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            "title" => 'required|min:5|max:500',
-            "slug" =>  'required|min:5|max:500',
-            "content" => 'required|min:7',
-            "category_id" => 'required',
-            "description" => 'required|min:7',
-            "posted" => 'required'
-        ];
+        return $this->myRules();
     }
 }

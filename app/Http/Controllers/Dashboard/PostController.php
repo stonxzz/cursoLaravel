@@ -24,10 +24,11 @@ class PostController extends Controller
     {
         //Con el pluck solo se mandan las consultas de lo que se quiere, sin tanta data
         $categories = Category::pluck('id', 'title');
+
         // dd($categories);
 
         // dd($categories[0]->slug);
-        echo view('dashboard.post.create',compact('categories'));
+        echo view('dashboard.post.create', compact('categories'));
     }
 
     /**
@@ -35,8 +36,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
-        dd($request->all()); 
+        Post::create($request->all());
         // dd($request);
     }
 

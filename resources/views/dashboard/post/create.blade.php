@@ -20,6 +20,7 @@
         
         <label for="">Categoria</label>
         <select name="category-id">
+            {{-- el title es la key y el id es el value que se manda en el post, asi funciona ese foreach --}}
             @foreach ($categories as $title => $id)
             <option value="{{$id}}">{{$title}}</option>
             @endforeach
@@ -32,7 +33,7 @@
         </select>
 
         <label for="content">Content</label>
-        <input type="text" name="Content">
+        <input type="text" name="content">
         
         <label for="description">Description</label>
         <input type="text" name="description">

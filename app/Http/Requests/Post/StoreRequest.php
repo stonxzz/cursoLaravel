@@ -10,8 +10,12 @@ class StoreRequest extends FormRequest
 
     protected function prepareForValidation()
     {
+        //El metodo merge agrega el campo indicado al array indicado, y el metodo prepareForValidation
+        //Prepara los datos antes de aplicar las validaciones.
         $this->merge([
-            'slug' => Str::slug($this->title)
+            // 'slug' => Str::slug($this->title),
+            // 'slug'=> Str::of($this->title)->slug()->append("-adicional")
+            'slug' => str($this->title)->slug()->append(".com")
         ]);  
     }
 

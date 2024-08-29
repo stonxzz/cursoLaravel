@@ -55,7 +55,7 @@ class PostController extends Controller
         // dd($data);
         //Cuando se usan los dos puntos es por que la clase se esta usando directamente
         Post::create($request->validated());
-        return to_route("post.index");
+        return to_route("post.index")->with('status', "Registro creadoo.");;
     }
 
     /**
@@ -88,7 +88,8 @@ class PostController extends Controller
         //cuando se usa la flecha en vez de los dos puntos es por que es una instancia de clase
         // dd($request->validated());
         $post->update($request->validated());
-        return to_route("post.index");
+       
+        return to_route("post.index")->with('status', "Registro actualizado.");
         
     }
 
@@ -98,6 +99,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return to_route("post.index");
+        return to_route("post.index")->with('status', "Registro eliminado.");;
     }
 }

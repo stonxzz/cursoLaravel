@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\PutRequest;
 use App\Http\Requests\Post\StoreRequest;
-use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -53,6 +51,7 @@ class PostController extends Controller
         // $data['slug'] = Str::slug($data['title']);
 
         // dd($data);
+        //Cuando se usan los dos puntos es por que la clase se esta usando directamente
         Post::create($request->validated());
     }
 
@@ -69,15 +68,23 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+         //Con el pluck solo se mandan las consultas de lo que se quiere, sin tanta data
+         $categories = Category::pluck('id', 'title');
+
+         // dd($categories);
+ 
+         // dd($categories[0]->slug);
+         return view('dashboard.post.edit', compact('categories', 'post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(PutRequest $request, Post $post)
     {
-        //
+        //cuando se usa la flecha en vez de los dos puntos es por que es una instancia de clase
+        // dd($request->validated());
+        $post->update($request->validated());
     }
 
     /**

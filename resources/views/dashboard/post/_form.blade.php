@@ -26,4 +26,9 @@
     <label for="description">Description</label>
     <input type="text" name="description" value="{{old("description","sin description",$post->description)}}">
 
+    @if (isset($task) && $task == "edit")
+    <label for="">Imagen</label>
+    <input type="file" name="image" >
+    @endif
+
     <button type="submit">Enviar</button>

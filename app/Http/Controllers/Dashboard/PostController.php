@@ -55,7 +55,7 @@ class PostController extends Controller
         // dd($data);
         //Cuando se usan los dos puntos es por que la clase se esta usando directamente
         Post::create($request->validated());
-        return to_route("post.index")->with('status', "Registro creadoo.");;
+        return to_route("post.index")->with('status', "Registro creadooÑ.");;
     }
 
     /**
@@ -85,9 +85,17 @@ class PostController extends Controller
      */
     public function update(PutRequest $request, Post $post)
     {
+        $data = $request->validated();
         //cuando se usa la flecha en vez de los dos puntos es por que es una instancia de clase
         // dd($request->validated());
-        $post->update($request->validated());
+        if(isset($data['image'])){//el isset verifica que este definido
+            // // dd($request->image);
+            // dd($request->validated()['image']->hashName());
+            $data['image'] = $filename = $data['image']->hashName();
+            //Se indica que la imagen se estar moviendo a ese disco (direccion)
+            $request->image->move(public_path("image"),$filename);
+        }
+        $post->update($data);
        
         return to_route("post.index")->with('status', "Registro actualizado.");
         

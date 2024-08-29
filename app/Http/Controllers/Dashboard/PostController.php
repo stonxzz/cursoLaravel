@@ -16,6 +16,7 @@ class PostController extends Controller
     public function index()
     {
         // se hace una pagincacion usando el metodo de laravel "paginate"
+
         $posts = Post::paginate(2);
         return view('dashboard.post.index',compact('posts'));
     }
@@ -54,6 +55,7 @@ class PostController extends Controller
         // dd($data);
         //Cuando se usan los dos puntos es por que la clase se esta usando directamente
         Post::create($request->validated());
+        return to_route("post.index");
     }
 
     /**
@@ -86,6 +88,8 @@ class PostController extends Controller
         //cuando se usa la flecha en vez de los dos puntos es por que es una instancia de clase
         // dd($request->validated());
         $post->update($request->validated());
+        return to_route("post.index");
+        
     }
 
     /**

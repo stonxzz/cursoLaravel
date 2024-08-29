@@ -1,6 +1,9 @@
 @extends('dashboard.layout')
 
 @section('content')
+    //Link para crear posts, se coloca la ruta de donde se realiza la accion
+    <a href="{{ route('post.create') }}">Create</a>
+
     <table>
         <thead>
             <tr>
@@ -32,7 +35,16 @@
                         {{ $p->posted }}
                     </td>
                     <td>
-                        Acciones
+                        <a href="{{ route('post.edit', $p) }}">Edit</a>
+                        <a href="{{ route('post.show', $p) }}">See</a>
+
+                        <form action="{{ route('post.destroy', $p) }}" method="post">
+                            @method("DELETE")
+                            @csrf
+                            <button type="submit">Delete</button>
+                        </form>
+                        
+
                     </td>
                 </tr>
             @endforeach
@@ -40,5 +52,5 @@
     </table>
 
     {{-- se agrega el metodo links para agregar los botones de paginacion --}}
-    {{$posts->links()}}
+    {{ $posts->links() }}
 @endsection

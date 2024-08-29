@@ -17,6 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
+        // se hace una pagincacion usando el metodo de laravel "paginate"
         $posts = Post::paginate(2);
         return view('dashboard.post.index',compact('posts'));
     }
@@ -84,6 +85,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        echo "destroy";
     }
 }

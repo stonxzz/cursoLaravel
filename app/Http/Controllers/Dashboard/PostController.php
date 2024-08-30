@@ -7,16 +7,17 @@ use App\Http\Requests\Post\PutRequest;
 use App\Http\Requests\Post\StoreRequest;
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         // se hace una pagincacion usando el metodo de laravel "paginate"
-
         $posts = Post::paginate(2);
         return view('dashboard.post.index',compact('posts'));
     }
@@ -24,7 +25,7 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         //Con el pluck solo se mandan las consultas de lo que se quiere, sin tanta data
         $categories = Category::pluck('id', 'title');
@@ -33,13 +34,13 @@ class PostController extends Controller
         // dd($categories);
 
         // dd($categories[0]->slug);
-        echo view('dashboard.post.create', compact('categories', 'post'));
+        return view('dashboard.post.create', compact('categories', 'post'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): RedirectResponse
     {
         // dd($request->all());
 
@@ -61,7 +62,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Post $post): View
     {
         return view("dashboard.post.show", compact('post'));
     }
@@ -69,7 +70,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Post $post): View
     {
          //Con el pluck solo se mandan las consultas de lo que se quiere, sin tanta data
          $categories = Category::pluck('id', 'title');
@@ -83,7 +84,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PutRequest $request, Post $post)
+    public function update(PutRequest $request, Post $post): RedirectResponse
     {
         $data = $request->validated();
         //cuando se usa la flecha en vez de los dos puntos es por que es una instancia de clase
@@ -104,7 +105,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post): RedirectResponse
     {
         $post->delete();
         return to_route("post.index")->with('status', "Registro eliminado.");;

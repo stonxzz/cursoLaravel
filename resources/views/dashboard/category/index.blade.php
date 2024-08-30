@@ -4,7 +4,7 @@
     {{-- //Link para crear categorys, se coloca la ruta de donde se realiza la accion --}}
     <a href="{{ route('category.create') }}">Create</a>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>

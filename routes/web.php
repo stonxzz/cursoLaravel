@@ -9,6 +9,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Indica que un parametro es opcional
+Route::get('/test/{id?}/{name?}', function($id = 10, $name = "jorge"){
+    echo $id;
+    echo $name;
+});
+
 Route::resource('post', PostController::class);
 Route::resource('category', CategoryController::class);
 

@@ -18,8 +18,13 @@ Route::middleware([TestMiddleware::class])->group(function () {
 });
 
 Route::group(['prefix' => 'dashboard'], function () {
-    Route::resource('post', PostController::class);
-    Route::resource('category', CategoryController::class);
+    // Route::resource('post', PostController::class);
+    // Route::resource('category', CategoryController::class);
+    //Agrupar las rutas por tipo recurso
+    Route::resources([
+        'post' => PostController::class,
+        'category' => CategoryController::class,
+    ]);
 });
 //Indica que un parametro es opcional
 // Route::get('/test/{id?}/{name?}', function ($id = 10, $name = "jorge") {

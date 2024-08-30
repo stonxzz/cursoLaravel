@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
+/* tabla basica */
 .table {
     @apply table-auto w-full
 }
@@ -17,3 +18,10 @@
 .table td {
     @apply px-5 py-4 whitespace-normal
 }
+/* tabla basica */
+
+/* ************ form */
+.form-control {
+    @apply block rounded-sm shadow-sm bg-purple-50 w-full
+}
+/* ************ form */

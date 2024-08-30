@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    public function posts(){
+        //Aqui se devuelve una relacion uno a muchos
+        return $this->hasMany(Post::class);
+    }
 }

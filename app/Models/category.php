@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+    protected $fillable = ['title', 'slug'];
 
     public function posts(){
         //Aqui se devuelve una relacion uno a muchos

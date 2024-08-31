@@ -2,9 +2,9 @@
 
 @section('content')
     {{-- //Link para crear categorys, se coloca la ruta de donde se realiza la accion --}}
-    <a class="btn btn-succes my-2" href="{{ route('category.create') }}">Create</a>
+    <a class="btn btn-succes my-3" href="{{ route('category.create') }}">Create</a>
 
-    <table class="table">
+    <table class="table mb-3">
         <thead>
             <tr>
                 <th>

@@ -31,4 +31,4 @@
     <input type="file" name="image" >
     @endif
 
-    <button type="submit">Enviar</button>
+    <button class="btn btn-primary mt-4" type="submit">Enviar</button>

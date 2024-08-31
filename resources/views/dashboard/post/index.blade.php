@@ -4,7 +4,7 @@
     {{-- //Link para crear posts, se coloca la ruta de donde se realiza la accion --}}
     <a class="btn btn-succes my-3 " href="{{ route('post.create') }}">Create</a>
 
-    <table class="table">
+    <table class="table mb-3">
         <thead>
             <tr>
                 <th>

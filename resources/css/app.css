@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 
+/* base */
+h1{
+    @apply text-4xl mb-3
+}
+/* base*/
+
 /* tabla basica */
 .table {
     @apply table-auto w-full
@@ -23,6 +29,10 @@
 /* ************ form */
 .form-control {
     @apply block rounded-sm shadow-sm bg-purple-50 w-full
+}
+
+label{
+    @apply mt-2 block
 }
 /* ************ form */
 

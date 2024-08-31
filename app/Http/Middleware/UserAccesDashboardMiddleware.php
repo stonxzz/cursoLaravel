@@ -16,6 +16,7 @@ class UserAccesDashboardMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        //Llamamos al metodo del middleware y si cumple, realiza la accion, de lo contrario redirecciona a otra pagina
         if(Auth::user()->isAdmin()){
             return $next($request);
         }

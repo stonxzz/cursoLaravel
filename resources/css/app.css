@@ -42,3 +42,13 @@
     @apply bg-yellow-600 hover:bg-yellow-800 border-yellow-600
 }
 /* ************* Buttons* */
+
+/* ************* Card* */
+.card{
+    @apply p-6 rounded shadow-sm
+}
+
+.card-white{
+    @apply bg-white
+}
+/* ************* Card* */

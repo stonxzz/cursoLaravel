@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- //Link para crear categorys, se coloca la ruta de donde se realiza la accion --}}
-    <a href="{{ route('category.create') }}">Create</a>
+    <a class="btn btn-succes my-2" href="{{ route('category.create') }}">Create</a>
 
     <table class="table">
         <thead>
@@ -29,10 +29,10 @@
                         {{$c->slug}}
                     </td>
                     <td>
-                        <a href="{{ route('category.edit', $c) }}">Edit</a>
-                        <a href="{{ route('category.show', $c) }}">See</a>
+                        <a class="btn btn-primary mx-1" href="{{ route('category.edit', $c) }}">Edit</a>
+                        <a class="btn btn-primary mx-1" href="{{ route('category.show', $c) }}">See</a>
 
-                        <form action="{{ route('category.destroy', $c) }}" method="post">
+                        <form class="btn btn-danger mx-1" action="{{ route('category.destroy', $c) }}" method="post">
                             @method("DELETE")
                             @csrf
                             <button type="submit">Delete</button>

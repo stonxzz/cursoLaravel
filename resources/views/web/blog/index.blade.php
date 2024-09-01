@@ -1,8 +1,10 @@
 @extends('web.layout')
 
 @section('content')
-    <h1>Listado</h1>
 
-    <x-web.blog.post.index :post="$post"></x-index>
+    <x-web.blog.post.index :post="$post">
+        {{-- esto es un slot y es para enviar contenido al componente --}}
+        <h1>Listado Principal de posts</h1>
+    </x-index>
 
 @endsection

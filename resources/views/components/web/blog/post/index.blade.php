@@ -1,5 +1,6 @@
 <div>
-    <h1>Listado de Post</h1>
+    {{$slot}}
+    
 
     @foreach ($post as $p)
         <div class="card card-white mb-2">

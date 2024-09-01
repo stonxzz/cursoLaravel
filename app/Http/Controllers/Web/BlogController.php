@@ -16,7 +16,7 @@ class BlogController extends Controller
         //Lo que hace eloquent con where es que el  primer valor es un atributo de la tabla del modelo
         //busca que sea igual al segundo parametro que se manda y trae esos datos, y el paginate los pagina
         $post = Post::where("posted", "yes")->paginate(2);
-        return view("web.blog.index");
+        return view("web.blog.index",compact('post'));
     }
 
     /**

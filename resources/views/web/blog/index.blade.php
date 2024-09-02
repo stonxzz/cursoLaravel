@@ -16,8 +16,7 @@
             </footer>
         @endslot
 
-        @slot('extra')
-            Extra
-        @endslot
+        {{-- slot de una sola linea --}}
+        @slot('extra', 'Extra')
         </x-index>
     @endsection

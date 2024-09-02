@@ -2,9 +2,9 @@
 
 @section('content')
     {{-- //Link para crear posts, se coloca la ruta de donde se realiza la accion --}}
-    <a href="{{ route('post.create') }}">Create</a>
+    <a class="btn btn-succes my-3 " href="{{ route('post.create') }}">Create</a>
 
-    <table>
+    <table class="table mb-3">
         <thead>
             <tr>
                 <th>
@@ -35,13 +35,13 @@
                         {{ $p->posted }}
                     </td>
                     <td>
-                        <a href="{{ route('post.edit', $p) }}">Edit</a>
-                        <a href="{{ route('post.show', $p) }}">See</a>
+                        <a class="btn btn-primary my-2"  href="{{ route('post.edit', $p) }}">Edit</a>
+                        <a class="btn btn-primary my-2"  href="{{ route('post.show', $p) }}">See</a>
 
                         <form action="{{ route('post.destroy', $p) }}" method="post">
                             @method("DELETE")
                             @csrf
-                            <button type="submit">Delete</button>
+                            <button class="btn btn-danger"  type="submit">Delete</button>
                         </form>
                         
 

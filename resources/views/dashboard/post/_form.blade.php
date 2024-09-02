@@ -1,10 +1,10 @@
 @csrf
 
     <label for="title">Title</label>
-    <input type="text" name="title" value="{{old("title",$post->title)}}">
+    <input class="form-control" type="text" name="title" value="{{old("title",$post->title)}}">
 
     <label for="slug">Slug</label>
-    <input type="text" name="slug" value="{{old("slug", $post->slug)}}">
+    <input class="form-control" type="text" name="slug" value="{{old("slug", $post->slug)}}">
     
     <label for="">Categoria</label>
     <select name="category_id">
@@ -21,14 +21,14 @@
     </select>
 
     <label for="content">Content</label>
-    <input type="text" name="content" value="{{old("content","sin content",$post->content)}}">
+    <input class="form-control" type="text" name="content" value="{{old("content","sin content",$post->content)}}">
     
     <label for="description">Description</label>
-    <input type="text" name="description" value="{{old("description","sin description",$post->description)}}">
+    <input class="form-control" type="text" name="description" value="{{old("description","sin description",$post->description)}}">
 
     @if (isset($task) && $task == "edit")
     <label for="">Imagen</label>
     <input type="file" name="image" >
     @endif
 
-    <button type="submit">Enviar</button>
+    <button class="btn btn-primary mt-4" type="submit">Enviar</button>

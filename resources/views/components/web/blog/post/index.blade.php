@@ -2,7 +2,7 @@
     {{$slot}}
     
 
-    @foreach ($post as $p)
+    @foreach ($posts as $p)
         <div class="card card-white mb-2">
             <h3>{{ $p->title }}</h3>
             {{-- se crea el link para enviar a la ruta del show y se envia el parametro --}}
@@ -11,5 +11,5 @@
         </div>
     @endforeach
 
-    {{ $post->links() }}
+    {{ $posts->links() }}
 </div>

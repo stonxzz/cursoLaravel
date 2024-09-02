@@ -1,5 +1,6 @@
 <div>
     {{$slot}}
+    {{$header}}
     
 
     @foreach ($posts as $p)
@@ -11,5 +12,10 @@
         </div>
     @endforeach
 
+    {{$extra}}
+
     {{ $posts->links() }}
+
 </div>
+
+{{$footer}}

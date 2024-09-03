@@ -11,8 +11,9 @@ Route::get('/user', function (Request $request) {
 
 //Se pone antes de definir resources por que si no busca un post con el parametro all
 Route::get('post/all', [PostController::class, 'all']);
-
 Route::get('category/all', [CategoryController::class, 'all']);
+Route::get('category/{category}/posts', [CategoryController::class, 'posts']);
+
 
 Route::resource('category', CategoryController::class)->except(['create', 'edit']);
 

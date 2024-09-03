@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\PutRequest;
 use App\Http\Requests\Category\StoreRequest;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -60,5 +61,23 @@ class CategoryController extends Controller
     {
         $category->delete();
         return response()->json("Deleted");
+    }
+
+    public function posts(Category $category){
+
+        //Forma con queryBuilder, es decir nosotros armamos la query
+        //"select `posts`.*, `categories`.`title` as `category` from `posts` inner join `categories` 
+        //on `categories`.`id` = `posts`.`category_id` where `categories`.`id` = ?"
+        // $posts = Post::join('categories',"categories.id", "=","posts.category_id")
+        // ->select("posts.*", "categories.title as category")
+        // ->where("categories.id", $category->id)
+        // ->get();
+
+        //Ahora usando eloquent
+        $posts = Post::with("category")//Se pone el nombre de la relacion que se definio en el modelo
+        ->where("category_id", $category->id)
+        ->get();
+        
+        return response()->json($posts);
     }
 }

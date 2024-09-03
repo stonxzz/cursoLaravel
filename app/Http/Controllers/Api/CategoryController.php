@@ -26,6 +26,12 @@ class CategoryController extends Controller
         return response()->json(Category::get());
     }
 
+    public function slug($slug) {
+        //Se pone el nombre de la relacion que se hizo en el modelo para traer las categorias
+        $category = Category::where("slug",$slug)->FirstOrFail();
+        return response()->json($category);
+    }
+
     /**
      * Store a newly created resource in storage.
      */

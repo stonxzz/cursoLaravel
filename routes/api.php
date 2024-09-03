@@ -11,7 +11,9 @@ Route::get('/user', function (Request $request) {
 
 //Se pone antes de definir resources por que si no busca un post con el parametro all
 Route::get('post/all', [PostController::class, 'all']);
+Route::get('post/slug/{slug}', [PostController::class, 'slug']);
 Route::get('category/all', [CategoryController::class, 'all']);
+Route::get('category/slug/{slug}', [CategoryController::class, 'slug']);
 Route::get('category/{category}/posts', [CategoryController::class, 'posts']);
 
 

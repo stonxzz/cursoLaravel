@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Web\BlogController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,14 +12,14 @@ Route::get('/', function () {
 
 
 
-Route::group(['prefix'=>'dashboard', 'middleware'=>['auth','admin']], function (){
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/', function () {
         return view('dashboard');
     })->name("dashboard");
-   Route::resources([
-    'post' => PostController::class,
-    'category' => CategoryController::class
-   ]); 
+    Route::resources([
+        'post' => PostController::class,
+        'category' => CategoryController::class
+    ]);
 });
 
 Route::middleware('auth')->group(function () {
@@ -27,4 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::group(['prefix' => 'blog'], function () {
+    Route::controller(BlogController::class)->group(function () {
+        Route::get('/', "index")->name("web.blog.index");
+        Route::get('/{post}', "show")->name("web.blog.show");
+    });
+});
+
+require __DIR__ . '/auth.php';

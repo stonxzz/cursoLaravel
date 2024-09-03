@@ -19,7 +19,11 @@ class CategoryController extends Controller
         return response()->json(Category::paginate(10));
     }
 
-    
+    public function all()
+    {
+        //Response es una funcion de las apis, y como una api no devuelve vista, siempre devuelve un json
+        return response()->json(Category::get());
+    }
 
     /**
      * Store a newly created resource in storage.

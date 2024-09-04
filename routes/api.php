@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,5 @@ Route::get('category/all', [CategoryController::class, 'all']);
 Route::get('category/slug/{slug}', [CategoryController::class, 'slug']);
 Route::get('category/{category}/posts', [CategoryController::class, 'posts']);
 
-
+//Usuarios
+Route::post('user/login', [UserController::class, 'login']);

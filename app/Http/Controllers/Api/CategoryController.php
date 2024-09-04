@@ -32,6 +32,7 @@ class CategoryController extends Controller
         return response()->json($category);
     }
 
+    
     /**
      * Store a newly created resource in storage.
      */

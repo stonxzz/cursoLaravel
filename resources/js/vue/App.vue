@@ -1,10 +1,12 @@
 <script setup>
    import List from './components/List.vue';
+   import Save from './components/Save.vue';
   
 </script>
 
 <template>
     <div>
-        <List/>
+        <!-- <List/> -->
+        <Save/>
     </div>
 </template>

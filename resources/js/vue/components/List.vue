@@ -1,56 +1,82 @@
-<script setup>
-import axios from "axios";
-import { onMounted, ref } from "vue";
+<script>
+import { data } from "autoprefixer";
 
-const posts = ref([]);
-const loading = ref(true)
-onMounted(async () => {
-  try {
-    const {data}  = await axios.get("/api/post")
-    posts.value = data.data
-    loading.value = false
-    console.log(data)
-  } catch (error) {
-    console.log (error)
-  }
-})
+export default {
+  data() {
+    return {
+      posts: [],
+      isLoading: true,
+      currentPage: 1,
+    };
+  },
+  methods: {
+    updatePage() {
+      setTimeout(this.listPage, 100);
+    },
+
+    clickMe() {
+      alert("Clicked!");
+    },
+    listPage() {
+      console.log("Click" + this.currentPage);
+      this.isLoading = true;
+      this.$axios.get("/api/post?page="+this.currentPage).then((res) => {
+        this.posts = res.data;
+        console.log(this.posts);
+        this.isLoading = false;
+      });
+    },
+  },
+
+  async mounted() {
+    this.listPage();
+  },
+};
 </script>
 
 <template>
   <div>
     <h1>Listado de Post</h1>
-     <o-table  :data="posts.length == 0 ? [] : posts">
-    <o-table-column
-            v-slot="p"
-            field="id"
-            label="ID">
-            {{ p.row.id }}
-    </o-table-column>
-    <o-table-column
-            v-slot="p"
-            field="title"
-            label="TITÚLO">
-            {{ p.row.title }}
-    </o-table-column>
-    <o-table-column
-            v-slot="p"
-            field="posted"
-            label="POSTEADO">
-            {{ p.row.posted }}
-    </o-table-column>
-    <o-table-column
-            v-slot="p"
-            field="created_at"
-            label="FECHA">
-            {{ p.row.created_at }}
-    </o-table-column>
-    <o-table-column
-            v-slot="p"
-            field="category"
-            label="CATEGORIA">
-            {{ p.row.category.title }}
-    </o-table-column>
+
+    <o-field label="Email" variant="danger" message="This email is invalid">
+      <o-input type="email" value="john@" maxlength="30"> </o-input>
+    </o-field>
+
+    <o-button @click="clickMe">Click Me</o-button>
+    <o-table
+      :loading="isLoading"
+      :data="posts.current_Page && posts.data.length == 0 ? [] : posts.data"
+    >
+      <o-table-column field="id" label="ID" numeric v-slot="p">
+        {{ p.row.id }}
+      </o-table-column>
+      <o-table-column field="title" label="Título" v-slot="p">
+        {{ p.row.title }}
+      </o-table-column>
+      <o-table-column field="posted" label="Posteado" v-slot="p">
+        {{ p.row.posted }}
+      </o-table-column>
+      <o-table-column field="created_at" label="Fecha" v-slot="p">
+        {{ p.row.created_at }}
+      </o-table-column>
+      <o-table-column field="category" label="Categoría" v-slot="p">
+        {{ p.row.category.title }}
+      </o-table-column>
     </o-table>
-    
+    <br />
+
+    <o-pagination
+      v-if="posts.current_page && posts.data.length > 0"
+      @change="updatePage"
+      v-model:current="currentPage"
+      :total="posts.total"
+      :range-before="rangeBefore || 2"
+      :range-after="rangeAfter || 2"
+      order="centered"
+      size="small"
+      :simple="false"
+      :rounded="true"
+      :per-page="posts.per_page"
+    />
   </div>
 </template>

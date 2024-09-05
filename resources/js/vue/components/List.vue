@@ -38,6 +38,8 @@ export default {
   <div>
     <h1>Listado de Post</h1>
 
+    <router-link :to="{name:'save'}">Crear</router-link>
+
     <o-field label="Email" variant="danger" message="This email is invalid">
       <o-input type="email" value="john@" maxlength="30"> </o-input>
     </o-field>
@@ -61,6 +63,10 @@ export default {
       </o-table-column>
       <o-table-column field="category" label="Categoría" v-slot="p">
         {{ p.row.category.title }}
+      </o-table-column>
+      <o-table-column field="slug" label="Accion" v-slot="p">
+        <router-link :to="{name:'save', param:{'slug': p.row.slug}}">editar</router-link>
+
       </o-table-column>
     </o-table>
     <br />

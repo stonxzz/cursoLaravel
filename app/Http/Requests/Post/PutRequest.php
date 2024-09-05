@@ -53,7 +53,7 @@ class PutRequest extends FormRequest
         return [
                     "title" => 'required|min:5|max:500',
                     //Indica que el slug va a ser igual al del post que se le indique
-                    "slug" =>  'required|min:5|max:500|unique:posts,slug,' .$this->route("post")->id,
+                    // "slug" =>  'required|min:5|max:500|unique:posts,slug,' .$this->route("post")->id,
                     "content" => 'required|min:7',
                     "category_id" => 'required',
                     "description" => 'required|min:7',

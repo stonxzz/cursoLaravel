@@ -19,10 +19,15 @@ export default {
         category_id: "",
         posted: "",
       },
+      post:""
     };
   },
-  mounted() {
-    this.getCategory();
+  async mounted() {
+    if(this.$route.params.slug){
+        await this.getPost()
+        this.initPost()
+    }
+        this.getCategory();
   },
   methods: {
     cleanErrorsForm(){
@@ -37,12 +42,22 @@ export default {
         this.categories = res.data;
       });
     },
+    async getPost() {
+      this.post = await this.$axios.get("/api/post/slug/"+this.$route.params.slug)
+      this.post = this.post.data
+      },
+    initPost(){
+        this.form.title = this.post.title
+        this.form.description = this.post.description
+        this.form.content = this.post.content
+        this.form.category_id = this.post.category_id
+        this.form.posted = this.post.posted
+    },
     submit(){
-        console.log(this.form)
 
         this.cleanErrorsForm()
-
-        this.$axios.post("/api/post", this.form)
+        if(this.post == "")
+        return this.$axios.post("/api/post", this.form)
         .then(res=>{
             console.log(res)
         }).catch(e=>{
@@ -66,9 +81,36 @@ export default {
             }
 
         })
-    }
-  },
-};
+
+        //Actualizar
+        this.$axios.patch("/api/post/"+this.post.id, this.form)
+        .then(res=>{
+            console.log(res)
+        }).catch(e=>{
+            // es para accedr a los errores en especifico que ocurran
+            console.log(e.response.data)
+
+            if (e.response.data.title) {
+                this.errors.title = e.response.data.title[0]
+            }
+            if (e.response.data.description) {
+                this.errors.description = e.response.data.description[0]
+            }
+            if (e.response.data.content) {
+                this.errors.content = e.response.data.content[0]
+            }
+            if (e.response.data.category_id) {
+                this.errors.category_id = e.response.data.category_id[0]
+            }
+            if (e.response.data.posted) {
+                this.errors.posted = e.response.data.posted[0]
+            }
+
+        })
+    
+}
+}
+  }
 </script>
 
 <template>

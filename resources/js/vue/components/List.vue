@@ -65,7 +65,7 @@ export default {
         {{ p.row.category.title }}
       </o-table-column>
       <o-table-column field="slug" label="Accion" v-slot="p">
-        <router-link :to="{name:'save', param:{'slug': p.row.slug}}">editar</router-link>
+        <router-link :to="{name:'save', params:{'slug': p.row.slug}}">editar</router-link>
 
       </o-table-column>
     </o-table>

@@ -20,11 +20,18 @@ export default {
     listPage() {
       console.log("Click" + this.currentPage);
       this.isLoading = true;
-      this.$axios.get("/api/post?page="+this.currentPage).then((res) => {
+      this.$axios.get("/api/post?page=" + this.currentPage).then((res) => {
         this.posts = res.data;
         console.log(this.posts);
         this.isLoading = false;
       });
+    },
+    deletePost(row) {
+      //Aqui trae el obeto completo, no solo la data, entonces se usa el index que ocupa en el arreglo posts para borrarlo visualmente
+      this.posts.data.splice(row.index, 1);
+      console.log(row);
+      //Aqui ya accede al row.row que es para obtener ahora si la data del post que se desea borrar
+      this.$axios.delete("/api/post/" + row.row.id);
     },
   },
 
@@ -38,7 +45,7 @@ export default {
   <div>
     <h1>Listado de Post</h1>
 
-    <router-link :to="{name:'save'}">Crear</router-link>
+    <router-link :to="{ name: 'save' }">Crear</router-link>
 
     <o-field label="Email" variant="danger" message="This email is invalid">
       <o-input type="email" value="john@" maxlength="30"> </o-input>
@@ -65,8 +72,11 @@ export default {
         {{ p.row.category.title }}
       </o-table-column>
       <o-table-column field="slug" label="Accion" v-slot="p">
-        <router-link :to="{name:'save', params:{'slug': p.row.slug}}">editar</router-link>
+        <router-link :to="{ name: 'save', params: { slug: p.row.slug } }"
+          >editar</router-link
+        >
 
+        <o-button variant="danger" @click="deletePost(p)">Eliminar</o-button>
       </o-table-column>
     </o-table>
     <br />

@@ -45,13 +45,14 @@ export default {
   <div>
     <h1>Listado de Post</h1>
 
-    <router-link :to="{ name: 'save' }">Crear</router-link>
+    <o-button
+      iconLeft="plus"
+      class="btn btn-success"
+      @click="router.push({ name: 'save' })"
+    >
+      Crear
+    </o-button>
 
-    <o-field label="Email" variant="danger" message="This email is invalid">
-      <o-input type="email" value="john@" maxlength="30"> </o-input>
-    </o-field>
-
-    <o-button @click="clickMe">Click Me</o-button>
     <o-table
       :loading="isLoading"
       :data="posts.current_Page && posts.data.length == 0 ? [] : posts.data"
@@ -72,11 +73,19 @@ export default {
         {{ p.row.category.title }}
       </o-table-column>
       <o-table-column field="slug" label="Accion" v-slot="p">
-        <router-link :to="{ name: 'save', params: { slug: p.row.slug } }"
+        <router-link
+          class="mr-3 ml-3"
+          :to="{ name: 'save', params: { slug: p.row.slug } }"
           >editar</router-link
         >
 
-        <o-button variant="danger" @click="deletePost(p)">Eliminar</o-button>
+        <o-button
+          iconLeft="delete"
+          variant="danger"
+          class="btn btn-danger"
+          @click="deletePost(p)"
+          >Eliminar</o-button
+        >
       </o-table-column>
     </o-table>
     <br />

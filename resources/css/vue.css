@@ -21,3 +21,7 @@ h1{
 }.btn-warning{
     @apply bg-yellow-600 hover:bg-yellow-800 border-yellow-600
 }
+
+:root{
+    --oruga-modal-content-padding:0
+}

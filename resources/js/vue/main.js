@@ -5,6 +5,10 @@ import '../../css/vue.css'
 
 //oruga
 import Oruga from '@oruga-ui/oruga-next';
+import '@oruga-ui/oruga-next/dist/oruga.js'
+import '@oruga-ui/oruga-next'
+
+
 
 
 
@@ -18,7 +22,6 @@ import App from "./App.vue";
 import router from "./router";
 
 const app = createApp(App).use(Oruga).use(router)
-
 app.config.globalProperties.$axios = axios
 window.axios = axios
 

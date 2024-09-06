@@ -40,6 +40,13 @@ export default {
 
   async mounted() {
     this.listPage();
+    this.$oruga.notification.open({
+      message: 'registro eliminado',
+      position:"bottom-right",
+      variant: 'danger',
+      duration: 4000,
+      closable:true
+    });
   },
 };
 </script>

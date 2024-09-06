@@ -59,8 +59,20 @@ export default {
         if(this.post == "")
         return this.$axios.post("/api/post", this.form)
         .then(res=>{
+          this.$oruga.notification.open({
+        message: 'registro procesado con exito',
+        position:"bottom-right",
+        duration: 4000,
+        closable:true
+    });
             console.log(res)
         }).catch(e=>{
+          this.$oruga.notification.open({
+        message: 'registro actualizado',
+        position:"bottom-right",
+        duration: 4000,
+        closable:true
+    });
             // es para accedr a los errores en especifico que ocurran
             console.log(e.response.data)
 

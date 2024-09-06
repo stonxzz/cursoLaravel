@@ -1,5 +1,6 @@
 <script>
 import { data } from "autoprefixer";
+import { useRouter } from "vue-router";
 
 export default {
   data() {
@@ -7,6 +8,8 @@ export default {
       posts: [],
       isLoading: true,
       currentPage: 1,
+      confirmDeleteActive: false,
+      deletePostRow: "",
     };
   },
   methods: {
@@ -26,12 +29,12 @@ export default {
         this.isLoading = false;
       });
     },
-    deletePost(row) {
+    deletePost() {
+      this.confirmDeleteActive=false
       //Aqui trae el obeto completo, no solo la data, entonces se usa el index que ocupa en el arreglo posts para borrarlo visualmente
-      this.posts.data.splice(row.index, 1);
-      console.log(row);
+      this.posts.data.splice(this.deletePostRow.index, 1);
       //Aqui ya accede al row.row que es para obtener ahora si la data del post que se desea borrar
-      this.$axios.delete("/api/post/" + row.row.id);
+      this.$axios.delete("/api/post/" + this.deletePostRow.row.id);
     },
   },
 
@@ -43,15 +46,21 @@ export default {
 
 <template>
   <div>
+    <o-modal v-model:active="confirmDeleteActive">
+      <div class="p-4">
+        <p>¿Seguro que quieres borrar el post?</p>
+      </div>
+      <div class="flex flex-row-reverse gap-2 bg-gray-500" p-3>
+        <button class="btn btn-success" @click="confirmDeleteActive = false">
+          Cancelar
+        </button>
+        <button class="btn btn-danger" @click="deletePost(p)">Eliminar</button>
+      </div>
+    </o-modal>
     <h1>Listado de Post</h1>
-
-    <o-button
-      iconLeft="plus"
-      class="btn btn-success"
-      @click="router.push({ name: 'save' })"
+    <router-link iconLeft="plus" class="btn btn-success my-4" :to="{ name: 'save' }"
+      >Crear</router-link
     >
-      Crear
-    </o-button>
 
     <o-table
       :loading="isLoading"
@@ -79,13 +88,12 @@ export default {
           >editar</router-link
         >
 
-        <o-button
-          iconLeft="delete"
-          variant="danger"
+        <button
           class="btn btn-danger"
-          @click="deletePost(p)"
-          >Eliminar</o-button
+          @click="deletePostRow = p; confirmDeleteActive=true"
         >
+          Eliminar
+        </button>
       </o-table-column>
     </o-table>
     <br />

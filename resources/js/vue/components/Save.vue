@@ -114,12 +114,19 @@ export default {
 </script>
 
 <template>
+
+    <h1 v-if="post">Actualizar Post <span class="font-bold">{{ post.title }}</span></h1>
+    <h1 v-else>Crear Post</h1>
+
     <!-- //El .prevent es para prevenir que se ejecute el evento por defecto de html -->
   <form @submit.prevent="submit">
-    <div>
-      <o-field label="Titulo" :variant="errors.title ? 'danger' : primary" :message="errors.title">
+    <div class="grid grid-cols-2 gap-3">
+        <div class="col-span-2">
+            <o-field label="Titulo" :variant="errors.title ? 'danger' : primary" :message="errors.title">
         <input v-model="form.title" value=""></input>
       </o-field>
+        </div>
+      
       <o-field label="Descripcion" :variant="errors.description ? 'danger' : primary" :message="errors.description">
         <textarea v-model="form.description" type="text-area" value=""></textarea>
       </o-field>
@@ -137,7 +144,7 @@ export default {
           <option value="not">No</option>
         </o-select>
       </o-field>
-      <o-button variant="primary" native-type="submit">Enviar</o-button>
     </div>
+    <o-button variant="primary" native-type="submit">Enviar</o-button>
   </form>
 </template>

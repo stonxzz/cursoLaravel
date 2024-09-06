@@ -1,6 +1,12 @@
 import { createApp } from "vue";
+
+//Tailwind
+import '../../css/vue.css'
+
 //oruga
 import Oruga from '@oruga-ui/oruga-next';
+
+
 
 //Material design
 import "@mdi/font/css/materialdesignicons.min.css"

@@ -121,10 +121,10 @@ export default {
         <input v-model="form.title" value=""></input>
       </o-field>
       <o-field label="Descripcion" :variant="errors.description ? 'danger' : primary" :message="errors.description">
-        <input v-model="form.description" type="text-area" value=""></input>
+        <textarea v-model="form.description" type="text-area" value=""></textarea>
       </o-field>
       <o-field label="Contenido" :variant="errors.content ? 'danger' : primary" :message="errors.content">
-        <input v-model="form.content" type="text-area" value=""></input>
+        <textarea v-model="form.content" type="text-area" value=""></textarea>
       </o-field>
       <o-field label="Categoria" :variant="errors.category_id ? 'danger' : primary" :message="errors.category_id">
         <o-select v-model="form.category_id" placeholder="Seleccione una categoria">

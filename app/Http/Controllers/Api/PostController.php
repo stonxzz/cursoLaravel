@@ -65,6 +65,9 @@ class PostController extends Controller
 
         // // dd($request->image);
         // dd($request->validated()['image']->hashName());
+        $request->validate([
+            'image' => "required|mimes:jpeg,png,gif|max:10240"
+        ]);
 
         $data['image'] = $filename = $request['image']->hashName();
         //Se indica que la imagen se estar moviendo a ese disco (direccion)

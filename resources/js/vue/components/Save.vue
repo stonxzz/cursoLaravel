@@ -20,7 +20,8 @@ export default {
         posted: "",
       },
       post:"",
-      file:null
+      file:null,
+      fileError:""
     };
   },
   async mounted() {
@@ -44,7 +45,7 @@ export default {
       const formData = new FormData()
       formData.append("image", this.file)
 
-      this.$axios.post("/api/post/upload"+this.post.id, formData,{
+      this.$axios.post("/api/post/upload/"+this.post.id, formData,{
         headers:{
           "Content-Type":"multipart/form-data"
         },
@@ -53,7 +54,7 @@ export default {
         console.log(res)
       })
       .catch((e)=>{
-        console.log(e)
+        this.fileError= e.response.data.message
       })
     },
     getCategory() {
@@ -177,12 +178,14 @@ export default {
       </o-field>
 
       <div class="flex gap-3" v-if="post">
+      <o-field :message="fileError">
       <o-upload v-model="file">
         <o-button tag="a" class="btn btn-success" variant="primary">
           <o-icon icon="upload"></o-icon>
           <span>Click para cargar</span>
         </o-button>
       </o-upload>
+    </o-field>
 
       <button class="btn btn-success" @click="upload" icon-left="upload">
         subir

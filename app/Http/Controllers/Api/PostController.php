@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return response()->json(Post::paginate(10));
+        return response()->json(Post::with('category')->paginate(10));
     }
 
     public function all()
@@ -29,7 +29,8 @@ class PostController extends Controller
     // }
 
     //Ahora se hace mediante la injeccion del post
-    public function slug(Post $post) {
+    public function slug(Post $post)
+    {
         return response()->json($post);
     }
     /**
@@ -57,7 +58,22 @@ class PostController extends Controller
         return response()->json($post);
     }
 
-    
+    public function upload(Request $request, Post $post)
+    {
+        //cuando se usa la flecha en vez de los dos puntos es por que es una instancia de clase
+        // dd($request->validated());
+
+        // // dd($request->image);
+        // dd($request->validated()['image']->hashName());
+
+        $data['image'] = $filename = $request['image']->hashName();
+        //Se indica que la imagen se estar moviendo a ese disco (direccion)
+        $request->image->move(public_path("image"), $filename);
+        
+        $post->update($data);
+
+        return response()->json($post);
+    }
 
     /**
      * Remove the specified resource from storage.

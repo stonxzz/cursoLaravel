@@ -23,6 +23,7 @@ Route::get('post/all', [PostController::class, 'all']);
 Route::get('post/slug/{post:slug}', [PostController::class, 'slug']);//Se indica por que atributo buscar ya que automaticament lo hace por la pk
 Route::get('category/slug/{slug}', [CategoryController::class, 'slug']);
 Route::get('category/{category}/posts', [CategoryController::class, 'posts']);
+Route::post('post/upload/{post}', [PostController::class, 'upload']);
 
 //Usuarios
 Route::post('user/login', [UserController::class, 'login']);

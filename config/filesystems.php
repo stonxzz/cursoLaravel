@@ -35,7 +35,9 @@ return [
             'root' => storage_path('app'),
             'throw' => false,
         ],
-
+        
+        
+//los discos son las maneras de gestionar nuestros archivos
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

@@ -19,7 +19,8 @@ export default {
         category_id: "",
         posted: "",
       },
-      post:""
+      post:"",
+      file:null
     };
   },
   async mounted() {
@@ -36,6 +37,24 @@ export default {
         this.errors.content = ""
         this.errors.category_id = ""
         this.errors.posted = ""
+    },
+    upload(){
+      //return console.log(this.file)
+
+      const formData = new FormData()
+      formData.append("image", this.file)
+
+      this.$axios.post("/api/post/upload"+this.post.id, formData,{
+        headers:{
+          "Content-Type":"multipart/form-data"
+        },
+      })
+      .then((res)=>{
+        console.log(res)
+      })
+      .catch((e)=>{
+        console.log(e)
+      })
     },
     getCategory() {
       this.$axios.get("/api/category/all").then((res) => {
@@ -156,6 +175,19 @@ export default {
           <option value="not">No</option>
         </o-select>
       </o-field>
+
+      <div class="flex gap-3" v-if="post">
+      <o-upload v-model="file">
+        <o-button tag="a" class="btn btn-success" variant="primary">
+          <o-icon icon="upload"></o-icon>
+          <span>Click para cargar</span>
+        </o-button>
+      </o-upload>
+
+      <button class="btn btn-success" @click="upload" icon-left="upload">
+        subir
+      </button>
+    </div>
     </div>
     <o-button variant="primary" native-type="submit">Enviar</o-button>
   </form>
